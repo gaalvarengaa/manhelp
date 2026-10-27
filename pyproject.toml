@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "manhelp"
+version = "0.1.0"
+description = "Busca comandos do Linux por descrição em linguagem natural, usando as páginas do man"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "GPL-3.0-or-later"
+keywords = ["linux", "man", "cli", "help", "portugues"]
+
+[project.scripts]
+manhelp = "manhelp.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["manhelp*"]
