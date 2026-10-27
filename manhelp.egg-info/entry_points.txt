@@ -1,0 +1,2 @@
+[console_scripts]
+manhelp = manhelp.cli:main

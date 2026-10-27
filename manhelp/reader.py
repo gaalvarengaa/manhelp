@@ -26,6 +26,10 @@ _HEADER_RE = re.compile(r"^[A-Z][A-Z0-9 _-]*$")
 # Sequências de negrito/sublinhado (backspace) que alguns sistemas deixam no texto
 _BACKSPACE_RE = re.compile(r".\x08")
 
+# Separador entre o nome e a descrição na seção NAME: hífen, travessão ou meia-risca
+# (ex.: "ls - list directory contents", "file — determine file type")
+_NAME_SEP_RE = re.compile(r"\s+(?:\\?-|—|–)\s+")
+
 
 @dataclass
 class ManPage:
@@ -78,8 +82,9 @@ def _split_sections(text: str) -> Dict[str, str]:
 def _description_from_name(name_section: str) -> str:
     """Extrai a descrição curta da seção NAME (formato 'comando - descrição')."""
     for line in name_section.splitlines():
-        if " - " in line:
-            return line.split(" - ", 1)[1].strip()
+        parts = _NAME_SEP_RE.split(line, maxsplit=1)
+        if len(parts) == 2:
+            return parts[1].strip()
     return ""
 
 

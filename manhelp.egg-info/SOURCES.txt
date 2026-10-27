@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+manhelp/__init__.py
+manhelp/__main__.py
+manhelp/cli.py
+manhelp/reader.py
+manhelp/search.py
+manhelp/synonyms.py
+manhelp.egg-info/PKG-INFO
+manhelp.egg-info/SOURCES.txt
+manhelp.egg-info/dependency_links.txt
+manhelp.egg-info/entry_points.txt
+manhelp.egg-info/top_level.txt

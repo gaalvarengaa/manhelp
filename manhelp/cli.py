@@ -17,7 +17,7 @@ from typing import List, Optional
 
 from . import __version__
 from .reader import ManPage, get_page
-from .search import search
+from .search import search, suggest_command
 
 USAGE = """\
 uso:
@@ -78,8 +78,13 @@ def main(argv: Optional[List[str]] = None) -> int:
             _show_page(page)
             return 0
 
-    results = search(" ".join(args))
-    if not results:
+    query = " ".join(args)
+    suggestion = suggest_command(query)
+    if suggestion:
+        print(f"sugestão: {suggestion}\n")
+
+    results = search(query)
+    if not results and not suggestion:
         print("Nenhum comando encontrado para essa descrição.")
         print("Tente palavras-chave em inglês, como 'find', 'size' ou 'compress'.")
         return 1
